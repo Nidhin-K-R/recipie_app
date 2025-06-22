@@ -7,10 +7,10 @@ import 'package:recipe_app/core/provider/button_provider.dart';
 
 class AppWidgets {
   //focus nodes
-  static FocusNode userName = FocusNode();
-  static FocusNode email = FocusNode();
-  static FocusNode password = FocusNode();
-  static FocusNode button = FocusNode();
+  static final userName = FocusNode();
+  static final email = FocusNode();
+  static final password = FocusNode();
+  static final button = FocusNode();
 
   static Widget texts({required String label, required TextStyle? style}) {
     return Text(label, style: style);
@@ -32,6 +32,7 @@ class AppWidgets {
           return "please enter email";
         }
         if (!RegExp("^[a-zA=Z0-9+_.-]+@[a-zA-Z0-9.-]+.[a-z]").hasMatch(value)) {
+          // controller.clear();
           return "enter valid email";
         }
         return null;
@@ -80,6 +81,7 @@ class AppWidgets {
                 return "please enter password";
               }
               if (value.length < 6) {
+                // controller.clear();
                 return "password must be at least 6 characters";
               }
               return null;
@@ -118,15 +120,14 @@ class AppWidgets {
     );
   }
 
-  static Widget buttonAuth({required String label}) {
+  static Widget buttonAuth({
+    required String label,
+    required VoidCallback onPressed,
+  }) {
     return ElevatedButton(
       focusNode: button,
       onFocusChange: (value) => print("button focus"),
-      onPressed: () {
-        if (AppConstants.formKey.currentState!.validate()) {
-          print("Login Successful");
-        }
-      },
+      onPressed: onPressed,
       child: Text(
         label,
         style: TextStyle(fontSize: 20.sp, fontWeight: FontWeight.bold),

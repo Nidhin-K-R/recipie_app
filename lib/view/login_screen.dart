@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:recipe_app/core/constants/app_constants.dart';
+import 'package:recipe_app/repository/functions/app_functions.dart';
+import 'package:recipe_app/view/homescreen.dart';
+
+import 'package:recipe_app/view/sign_up_screen.dart';
 import 'package:recipe_app/widgets/app_widgets.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -22,7 +26,7 @@ class _LoginScreenState extends State<LoginScreen> {
           child: Padding(
             padding: EdgeInsets.symmetric(vertical: 70.h, horizontal: 30.w),
             child: Form(
-              key: AppConstants.formKey,
+              key: AppConstants.lformKey,
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -61,7 +65,11 @@ class _LoginScreenState extends State<LoginScreen> {
                     onPressed: () {},
                   ),
                   SizedBox(height: 25.h),
-                  AppWidgets.buttonAuth(label: "Log In"),
+                  AppWidgets.buttonAuth(
+                    label: "Log In",
+                    onPressed:
+                        () => AppFunctions.entryPoint2(context, Homescreen()),
+                  ),
                   SizedBox(height: 30.h),
                   Row(
                     children: [
@@ -73,7 +81,10 @@ class _LoginScreenState extends State<LoginScreen> {
                         ),
                       ),
                       SizedBox(width: 5.w),
-                      Text("OR", style: TextTheme.of(context).bodySmall),
+                      Text(
+                        "Or SignUp With",
+                        style: TextTheme.of(context).bodySmall,
+                      ),
                       SizedBox(width: 5.w),
                       Expanded(
                         child: Divider(
@@ -104,7 +115,9 @@ class _LoginScreenState extends State<LoginScreen> {
                       AppWidgets.textButton(
                         label: "SignUp",
                         size: 20,
-                        onPressed: () {},
+                        onPressed: () {
+                          AppFunctions.navigate(context, SignUpScreen());
+                        },
                       ),
                     ],
                   ),

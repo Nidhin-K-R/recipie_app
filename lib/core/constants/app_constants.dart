@@ -16,5 +16,6 @@ class AppConstants {
 
   //validator
 
-  static final formKey = GlobalKey<FormState>();
+  static final lformKey = GlobalKey<FormState>();
+  static final sformKey = GlobalKey<FormState>();
 }
