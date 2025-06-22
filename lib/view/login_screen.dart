@@ -1,0 +1,119 @@
+import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:recipe_app/core/constants/app_constants.dart';
+import 'package:recipe_app/widgets/app_widgets.dart';
+
+class LoginScreen extends StatefulWidget {
+  const LoginScreen({super.key});
+
+  @override
+  State<LoginScreen> createState() => _LoginScreenState();
+}
+
+class _LoginScreenState extends State<LoginScreen> {
+  final _emailController = TextEditingController();
+  final _passwordController = TextEditingController();
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: SafeArea(
+        child: SingleChildScrollView(
+          child: Padding(
+            padding: EdgeInsets.symmetric(vertical: 70.h, horizontal: 30.w),
+            child: Form(
+              key: AppConstants.formKey,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  AppWidgets.texts(
+                    label: AppConstants.lHeadding,
+                    style: TextTheme.of(context).titleLarge,
+                  ),
+                  AppWidgets.texts(
+                    label: AppConstants.lSubTitle,
+                    style: TextTheme.of(context).displayLarge,
+                  ),
+                  SizedBox(height: 70.h),
+                  AppWidgets.texts(
+                    label: "Email",
+                    style: TextTheme.of(context).labelSmall,
+                  ),
+                  AppWidgets.emailTextfield(
+                    label: "Enter email",
+                    controller: _emailController,
+                    context: context,
+                  ),
+                  SizedBox(height: 15.h),
+                  AppWidgets.texts(
+                    label: "Password",
+                    style: TextTheme.of(context).labelSmall,
+                  ),
+                  AppWidgets.passwordTextfield(
+                    label: "Enter password",
+                    controller: _passwordController,
+                    context: context,
+                  ),
+                  SizedBox(height: 5.h),
+                  AppWidgets.textButton(
+                    label: "Forgot Password?",
+                    size: 15,
+                    onPressed: () {},
+                  ),
+                  SizedBox(height: 25.h),
+                  AppWidgets.buttonAuth(label: "Log In"),
+                  SizedBox(height: 30.h),
+                  Row(
+                    children: [
+                      Expanded(
+                        child: Divider(
+                          color: Colors.grey.shade300,
+                          thickness: 1,
+                          indent: 10.w,
+                        ),
+                      ),
+                      SizedBox(width: 5.w),
+                      Text("OR", style: TextTheme.of(context).bodySmall),
+                      SizedBox(width: 5.w),
+                      Expanded(
+                        child: Divider(
+                          color: Colors.grey.shade300,
+                          thickness: 1,
+                          endIndent: 10.w,
+                        ),
+                      ),
+                    ],
+                  ),
+                  SizedBox(height: 20.h),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      AppWidgets.googleButton(),
+                      AppWidgets.facebookButton(),
+                    ],
+                  ),
+                  SizedBox(height: 10.h),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      AppWidgets.texts(
+                        label: "Don't have an account?",
+                        style: TextTheme.of(context).labelMedium,
+                      ),
+
+                      AppWidgets.textButton(
+                        label: "SignUp",
+                        size: 20,
+                        onPressed: () {},
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+}
