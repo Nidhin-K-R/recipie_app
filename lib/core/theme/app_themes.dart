@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:recipe_app/core/constants/app_constants.dart';
 
 class AppThemes {
@@ -9,11 +10,49 @@ class AppThemes {
   static ThemeData get lightTheme {
     return ThemeData(
       brightness: Brightness.light,
-      primaryColor: Colors.white,
+      primaryColor: AppConstants.primaryColor,
       scaffoldBackgroundColor: Colors.white,
       textTheme: TextTheme(
-        displayLarge: TextStyle(color: AppConstants.textColor),
-        bodyMedium: TextStyle(color: AppConstants.subTextColor, fontSize: 50),
+        titleMedium: TextStyle(
+          //create an account
+          fontSize: 30.sp,
+          color: AppConstants.textColor,
+          fontWeight: FontWeight.bold,
+        ),
+        displayMedium: TextStyle(
+          //Let's help you set up your account,\nit won't take long.
+          fontSize: 15.sp,
+          fontWeight: FontWeight.w900,
+          color: AppConstants.commonUseColor,
+        ),
+        titleLarge: TextStyle(
+          //hello
+          fontSize: 40.sp,
+          fontWeight: FontWeight.bold,
+          color: AppConstants.textColor,
+        ),
+        displayLarge: TextStyle(
+          ////welcome back
+          fontSize: 20.sp,
+          color: AppConstants.textColor,
+        ),
+        labelSmall: TextStyle(
+          // normal labels
+          fontSize: 15.sp,
+          fontWeight: FontWeight.bold,
+          color: AppConstants.textColor,
+        ),
+        //dont have an account
+        labelMedium: TextStyle(
+          fontSize: 18.sp,
+          color: Colors.grey.shade400,
+          fontWeight: FontWeight.bold,
+        ),
+        // or
+        bodySmall: TextStyle(
+          color: Colors.grey.shade500,
+          fontWeight: FontWeight.bold,
+        ),
       ),
     );
   }

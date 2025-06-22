@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
 import 'package:recipe_app/core/provider/button_provider.dart';
-import 'package:recipe_app/view/sign_in_screen.dart';
+import 'package:recipe_app/core/theme/app_themes.dart';
+import 'package:recipe_app/view/login_screen.dart';
 
 void main() {
   runApp(MyApp());
@@ -22,8 +23,9 @@ class MyApp extends StatelessWidget {
             ],
 
             child: MaterialApp(
+              theme: AppThemes.lightTheme,
               debugShowCheckedModeBanner: false,
-              home: SignInScreen(),
+              home: LoginScreen(),
             ),
           ),
     );

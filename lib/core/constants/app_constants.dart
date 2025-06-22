@@ -6,4 +6,15 @@ class AppConstants {
   static const Color textColor = Color(0xFF1E1F24);
   static const Color subTextColor = Color(0xFF62636C);
   static const Color commonUseColor = Color(0xFF8B8D98);
+  //signup
+  static const String sHeadding = "Create an account";
+  static const String sSubTitle =
+      "Let's help you set up your account,\nit won't take long.";
+  //Login
+  static const String lHeadding = "Hello,";
+  static const String lSubTitle = "Welcome Back!";
+
+  //validator
+
+  static final formKey = GlobalKey<FormState>();
 }
