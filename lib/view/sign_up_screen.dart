@@ -44,7 +44,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     label: "Username",
                     style: TextTheme.of(context).labelSmall,
                   ),
-                  AppWidgets.userNameTextfield(
+                  AppWidgets.userNamefield(
                     label: "Enter Username",
                     controller: _usernameController,
                     context: context,
@@ -54,7 +54,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     label: "Email",
                     style: TextTheme.of(context).labelSmall,
                   ),
-                  AppWidgets.emailTextfield(
+                  AppWidgets.emailfield(
                     label: "Enter email",
                     controller: _emailController,
                     context: context,
@@ -64,7 +64,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     label: "Password",
                     style: TextTheme.of(context).labelSmall,
                   ),
-                  AppWidgets.passwordTextfield(
+                  AppWidgets.passwordfield(
                     label: "Enter password",
                     controller: _passwordController,
                     context: context,

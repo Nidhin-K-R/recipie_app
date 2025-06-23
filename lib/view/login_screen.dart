@@ -43,7 +43,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     label: "Email",
                     style: TextTheme.of(context).labelSmall,
                   ),
-                  AppWidgets.emailTextfield(
+                  AppWidgets.emailfield(
                     label: "Enter email",
                     controller: _emailController,
                     context: context,
@@ -53,7 +53,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     label: "Password",
                     style: TextTheme.of(context).labelSmall,
                   ),
-                  AppWidgets.passwordTextfield(
+                  AppWidgets.passwordfield(
                     label: "Enter password",
                     controller: _passwordController,
                     context: context,
