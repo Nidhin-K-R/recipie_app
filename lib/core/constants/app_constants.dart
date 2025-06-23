@@ -13,9 +13,16 @@ class AppConstants {
   //Login
   static const String lHeadding = "Hello,";
   static const String lSubTitle = "Welcome Back!";
-
+  //new password
+  static const String passwordHedding = "New Password";
+  static const String passwordTitle =
+      "Your new password must be different from previously used passwords";
+  // home screen
+  static const String hHedding = "Got a tasty dish in mind?";
   //validator
-
+  //  .......auth
   static final lformKey = GlobalKey<FormState>();
   static final sformKey = GlobalKey<FormState>();
+  // .......new password
+  static final nformKey = GlobalKey<FormState>();
 }

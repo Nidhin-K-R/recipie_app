@@ -20,4 +20,10 @@ class AppFunctions {
       Navigator.push(context, MaterialPageRoute(builder: (ctx) => screen));
     }
   }
+
+  static entryPoint3(BuildContext context, Widget screen) {
+    if (AppConstants.nformKey.currentState!.validate()) {
+      Navigator.push(context, MaterialPageRoute(builder: (ctx) => screen));
+    }
+  }
 }

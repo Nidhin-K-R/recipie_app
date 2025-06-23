@@ -10,14 +10,16 @@ class AppWidgets {
   static final userName = FocusNode();
   static final email = FocusNode();
   static final password = FocusNode();
+  static final newPassword = FocusNode();
   static final button = FocusNode();
+  static var passwordValue;
 
   static Widget texts({required String label, required TextStyle? style}) {
     return Text(label, style: style);
   }
 
   //email
-  static Widget emailTextfield({
+  static Widget emailfield({
     required String label,
     required var controller,
     required BuildContext context,
@@ -43,7 +45,7 @@ class AppWidgets {
   }
 
   // username
-  static Widget userNameTextfield({
+  static Widget userNamefield({
     required String label,
     required var controller,
     required BuildContext context,
@@ -64,7 +66,7 @@ class AppWidgets {
   }
 
   //password
-  static Widget passwordTextfield({
+  static Widget passwordfield({
     required String label,
     required var controller,
     required BuildContext context,
@@ -84,6 +86,9 @@ class AppWidgets {
                 // controller.clear();
                 return "password must be at least 6 characters";
               }
+              if (value != passwordValue) {
+                return "password incorrect ";
+              }
               return null;
             },
             obscureText: value.click ? true : false,
@@ -102,6 +107,33 @@ class AppWidgets {
     );
   }
 
+  static Widget newPasswordfield({
+    required String label,
+    required var controller,
+    required BuildContext context,
+  }) {
+    return TextFormField(
+      validator: (value) {
+        passwordValue = value;
+        if (value == null || value.isEmpty) {
+          return "please enter new password";
+        }
+        if (value.length < 6) {
+          controller.clear();
+          return "password must be at least 6 characters";
+        }
+
+        return null;
+      },
+      focusNode: newPassword,
+      onFieldSubmitted:
+          (value) => FocusScope.of(context).requestFocus(password),
+      obscureText: true,
+      keyboardType: TextInputType.visiblePassword,
+      decoration: InputDecoration(icon: Icon(Iconsax.key), hintText: label),
+    );
+  }
+
   static Widget textButton({
     required String label,
     required double size,
@@ -109,6 +141,7 @@ class AppWidgets {
   }) {
     return TextButton(
       onPressed: onPressed,
+
       child: Text(
         label,
         style: TextStyle(
@@ -128,10 +161,6 @@ class AppWidgets {
       focusNode: button,
       onFocusChange: (value) => print("button focus"),
       onPressed: onPressed,
-      child: Text(
-        label,
-        style: TextStyle(fontSize: 20.sp, fontWeight: FontWeight.bold),
-      ),
       style: ElevatedButton.styleFrom(
         backgroundColor: AppConstants.primaryColor,
         foregroundColor: Colors.white,
@@ -139,6 +168,10 @@ class AppWidgets {
         shape: ContinuousRectangleBorder(
           borderRadius: BorderRadius.circular(20.r),
         ),
+      ),
+      child: Text(
+        label,
+        style: TextStyle(fontSize: 20.sp, fontWeight: FontWeight.bold),
       ),
     );
   }
@@ -159,6 +192,34 @@ class AppWidgets {
         "assets/images/facebook.jpeg",
         height: 55.r,
         width: 55.r,
+      ),
+    );
+  }
+
+  static Widget searchBar() {
+    return SearchBar(
+      hintText: "Search recipes",
+      trailing: [
+        Icon(Iconsax.search_normal, color: Colors.grey, size: 18.sp),
+        SizedBox(width: 15.w),
+      ],
+    );
+  }
+
+  static Widget categoryCard({
+    required String category,
+    required String image,
+    required BuildContext context,
+  }) {
+    return InkWell(
+      onTap: () {
+        print("TApped category");
+      },
+      child: Column(
+        children: [
+          Image.asset(image, height: 80.h, width: 80.w),
+          texts(label: category, style: TextTheme.of(context).labelSmall),
+        ],
       ),
     );
   }
