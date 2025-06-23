@@ -28,5 +28,9 @@ flutter:
   assets:
   - assets/images/google.jpeg
   - assets/images/facebook.jpeg
+  - assets/images/breakfast.png
+  - assets/images/lunch.png
+  - assets/images/evening.png
+  - assets/images/dinner.png
 
   
