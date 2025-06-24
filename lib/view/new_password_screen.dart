@@ -3,7 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:recipe_app/core/constants/app_constants.dart';
 import 'package:recipe_app/repository/functions/app_functions.dart';
 import 'package:recipe_app/view/homescreen.dart';
-import 'package:recipe_app/widgets/app_widgets.dart';
+import 'package:recipe_app/app/widgets/app_widgets.dart';
 
 class NewPasswordScreen extends StatefulWidget {
   const NewPasswordScreen({super.key});

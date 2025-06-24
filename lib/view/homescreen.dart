@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:iconsax/iconsax.dart';
+
+import 'package:recipe_app/app/widget-builders/widget_builders.dart';
 import 'package:recipe_app/core/constants/app_constants.dart';
-import 'package:recipe_app/widgets/app_widgets.dart';
+import 'package:recipe_app/app/widgets/app_widgets.dart';
+
+import 'package:recipe_app/model/data/data_model.dart';
+import 'package:recipe_app/services/api_services.dart';
 
 class Homescreen extends StatefulWidget {
   const Homescreen({super.key});
@@ -12,6 +16,20 @@ class Homescreen extends StatefulWidget {
 }
 
 class _HomescreenState extends State<Homescreen> {
+  List<DataModel> recipes = [];
+  Future<void> fetch() async {
+    final recipe = await ApiServices.getRecipes();
+    setState(() {
+      recipes = recipe;
+    });
+  }
+
+  @override
+  void initState() {
+    fetch();
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -30,42 +48,52 @@ class _HomescreenState extends State<Homescreen> {
                 SizedBox(height: 10.h),
                 AppWidgets.searchBar(),
                 SizedBox(height: 40.h),
-                AppWidgets.texts(
-                  label: "Categories",
-                  style: TextTheme.of(context).labelLarge,
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    AppWidgets.texts(
+                      label: "Categories",
+                      style: TextTheme.of(context).labelLarge,
+                    ),
+                    AppWidgets.allCategoryButton(),
+                  ],
                 ),
-                SizedBox(height: 15.h),
-                SizedBox(
-                  height: 130.sp,
-                  width: double.infinity,
+                AppWidetBuilders.categorySection(),
+                AppWidgets.texts(
+                  label: "Meals ",
+                  style: TextTheme.of(context).labelSmall,
+                ),
 
-                  child: ListView(
+                Container(
+                  height: 260.h,
+                  //margin: EdgeInsets.only(left: 50.w, top: 1.h),
+                  width: double.infinity,
+                  child: ListView.builder(
                     scrollDirection: Axis.horizontal,
-                    children: <Widget>[
-                      AppWidgets.categoryCard(
-                        category: "Breakfast",
-                        image: "assets/images/breakfast.png",
-                        context: context,
-                      ),
-                      SizedBox(width: 10.w),
-                      AppWidgets.categoryCard(
-                        category: "Lunch",
-                        image: "assets/images/lunch.png",
-                        context: context,
-                      ),
-                      SizedBox(width: 10.w),
-                      AppWidgets.categoryCard(
-                        category: "Evening",
-                        image: "assets/images/evening.png",
-                        context: context,
-                      ),
-                      SizedBox(width: 10.w),
-                      AppWidgets.categoryCard(
-                        category: "Dinner",
-                        image: "assets/images/dinner.png",
-                        context: context,
-                      ),
-                    ],
+                    itemCount: recipes.length,
+                    itemBuilder: (context, index) {
+                      final recipe = recipes[index];
+                      return Row(
+                        children: [
+                          Card(
+                            elevation: 10,
+                            child: Container(
+                              padding: EdgeInsets.symmetric(horizontal: 20.w),
+                              height: 250.h,
+                              width: 220.h,
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(20),
+                                image: DecorationImage(
+                                  fit: BoxFit.cover,
+                                  image: NetworkImage(recipe.image),
+                                ),
+                              ),
+                            ),
+                          ),
+                          SizedBox(width: 30.w),
+                        ],
+                      );
+                    },
                   ),
                 ),
               ],

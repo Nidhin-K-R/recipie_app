@@ -5,7 +5,7 @@ import 'package:recipe_app/repository/functions/app_functions.dart';
 import 'package:recipe_app/view/homescreen.dart';
 
 import 'package:recipe_app/view/sign_up_screen.dart';
-import 'package:recipe_app/widgets/app_widgets.dart';
+import 'package:recipe_app/app/widgets/app_widgets.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
