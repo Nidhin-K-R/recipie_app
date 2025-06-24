@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
 import 'package:recipe_app/core/provider/button_provider.dart';
+import 'package:recipe_app/core/provider/category_provider.dart';
 import 'package:recipe_app/core/theme/app_themes.dart';
 import 'package:recipe_app/mainscreen.dart';
 
@@ -20,6 +21,7 @@ class MyApp extends StatelessWidget {
           (context, child) => MultiProvider(
             providers: [
               ChangeNotifierProvider(create: (_) => ButtonProvider()),
+              ChangeNotifierProvider(create: (_) => CategoryProvider()),
             ],
 
             child: MaterialApp(
