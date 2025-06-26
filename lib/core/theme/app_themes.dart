@@ -66,6 +66,8 @@ class AppThemes {
           fontSize: 15.r,
           fontWeight: FontWeight.bold,
           color: AppConstants.textColor,
+
+          //height: 5,
         ),
       ),
       searchBarTheme: SearchBarThemeData(
