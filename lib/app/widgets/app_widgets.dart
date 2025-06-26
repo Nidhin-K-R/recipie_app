@@ -16,7 +16,7 @@ class AppWidgets {
   static var passwordValue;
 
   static Widget texts({required String label, required TextStyle? style}) {
-    return Text(label, style: style);
+    return Text(label, style: style, textAlign: TextAlign.center);
   }
 
   //email
@@ -213,6 +213,64 @@ class AppWidgets {
     );
   }
 
+  // explore bar
+  static Widget exploreCard() {
+    return SizedBox(
+      height: 200.h,
+      child: Stack(
+        children: [
+          Container(
+            margin: EdgeInsets.only(top: 30.h),
+            height: 130.h,
+            width: double.infinity,
+            decoration: BoxDecoration(
+              gradient: LinearGradient(
+                colors: [AppConstants.accentColor, AppConstants.primaryColor],
+              ),
+
+              borderRadius: BorderRadius.circular(12),
+            ),
+            child: Padding(
+              padding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 10.h),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    "Cook the best\nrecipes at home",
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      fontSize: 25.r,
+                      color: Colors.white,
+                      height: 0,
+                    ),
+                  ),
+                  SizedBox(height: 15.h),
+                  ElevatedButton(
+                    onPressed: () {},
+                    child: Text("Explore"),
+                    style: ElevatedButton.styleFrom(
+                      fixedSize: Size(150.w, 25.h),
+                      foregroundColor: AppConstants.primaryColor,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ),
+          Align(
+            alignment: Alignment(1.2.w, 0),
+            child: Image.asset(
+              "assets/images/chef.png",
+
+              height: 180.r,
+              filterQuality: FilterQuality.high,
+              fit: BoxFit.fill,
+            ),
+          ),
+        ],
+      ),
+    );
+  }
   // category
 
   static List<List<String>> categoryItems = [
@@ -221,8 +279,10 @@ class AppWidgets {
       "assets/images/lunch.png",
       "assets/images/evening.png",
       "assets/images/dinner.png",
+      "assets/images/desert.png",
+      "assets/images/juice.png",
     ],
-    ["Breakfast", "Lunch", "Snacks", "Dinner"],
+    ["Breakfast", "Lunch", "Snacks", "Dinner", "Desert", "Juice"],
   ];
 
   //allcategory button
