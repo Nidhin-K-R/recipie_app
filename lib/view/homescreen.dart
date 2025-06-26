@@ -16,9 +16,10 @@ class Homescreen extends StatefulWidget {
 }
 
 class _HomescreenState extends State<Homescreen> {
-  List<DataModel> recipes = [];
+  static List<DataModel> recipes = [];
   Future<void> fetch() async {
     final recipe = await ApiServices.getRecipes();
+    print(recipe);
     setState(() {
       recipes = recipe;
     });
@@ -47,7 +48,9 @@ class _HomescreenState extends State<Homescreen> {
                 ),
                 SizedBox(height: 10.h),
                 AppWidgets.searchBar(),
-                SizedBox(height: 40.h),
+
+                AppWidgets.exploreCard(),
+                SizedBox(height: 20.h),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
@@ -60,42 +63,10 @@ class _HomescreenState extends State<Homescreen> {
                 ),
                 AppWidetBuilders.categorySection(),
                 AppWidgets.texts(
-                  label: "Meals ",
-                  style: TextTheme.of(context).labelSmall,
+                  label: "Recommended for you ",
+                  style: TextTheme.of(context).labelLarge,
                 ),
-
-                Container(
-                  height: 260.h,
-                  //margin: EdgeInsets.only(left: 50.w, top: 1.h),
-                  width: double.infinity,
-                  child: ListView.builder(
-                    scrollDirection: Axis.horizontal,
-                    itemCount: recipes.length,
-                    itemBuilder: (context, index) {
-                      final recipe = recipes[index];
-                      return Row(
-                        children: [
-                          Card(
-                            elevation: 10,
-                            child: Container(
-                              padding: EdgeInsets.symmetric(horizontal: 20.w),
-                              height: 250.h,
-                              width: 220.h,
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(20),
-                                image: DecorationImage(
-                                  fit: BoxFit.cover,
-                                  image: NetworkImage(recipe.image),
-                                ),
-                              ),
-                            ),
-                          ),
-                          SizedBox(width: 30.w),
-                        ],
-                      );
-                    },
-                  ),
-                ),
+                AppWidetBuilders.recommendedMeals(list: recipes),
               ],
             ),
           ),
