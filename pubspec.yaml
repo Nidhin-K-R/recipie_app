@@ -32,5 +32,8 @@ flutter:
   - assets/images/lunch.png
   - assets/images/evening.png
   - assets/images/dinner.png
+  - assets/images/desert.png
+  - assets/images/juice.png
+  - assets/images/chef.png
 
   
