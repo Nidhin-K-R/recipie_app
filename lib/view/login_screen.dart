@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:recipe_app/app/widgets/auth_button.dart';
+import 'package:recipe_app/app/widgets/social_auth_button.dart';
 import 'package:recipe_app/core/constants/app_constants.dart';
 import 'package:recipe_app/repository/functions/app_functions.dart';
 import 'package:recipe_app/view/homescreen.dart';
@@ -65,7 +67,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     onPressed: () {},
                   ),
                   SizedBox(height: 25.h),
-                  AppWidgets.buttonAuth(
+                  AuthButton(
                     label: "Log In",
                     onPressed:
                         () => AppFunctions.entryPoint2(context, Homescreen()),
@@ -96,13 +98,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     ],
                   ),
                   SizedBox(height: 20.h),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: [
-                      AppWidgets.googleButton(),
-                      AppWidgets.facebookButton(),
-                    ],
-                  ),
+                  SocialAuthButton(),
                   SizedBox(height: 10.h),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,

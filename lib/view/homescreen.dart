@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import 'package:recipe_app/app/widget-builders/widget_builders.dart';
+import 'package:recipe_app/app/widgets/banner.dart';
+import 'package:recipe_app/app/widgets/categories.dart';
+import 'package:recipe_app/app/widgets/display_recipes.dart';
 import 'package:recipe_app/core/constants/app_constants.dart';
 import 'package:recipe_app/app/widgets/app_widgets.dart';
 
@@ -49,24 +51,16 @@ class _HomescreenState extends State<Homescreen> {
                 SizedBox(height: 10.h),
                 AppWidgets.searchBar(),
 
-                AppWidgets.exploreCard(),
                 SizedBox(height: 20.h),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    AppWidgets.texts(
-                      label: "Categories",
-                      style: TextTheme.of(context).labelLarge,
-                    ),
-                    AppWidgets.allCategoryButton(),
-                  ],
-                ),
-                AppWidetBuilders.categorySection(),
+                BannerCard(),
+                SizedBox(height: 10.h),
+
+                Categories(),
                 AppWidgets.texts(
                   label: "Recommended for you ",
                   style: TextTheme.of(context).labelLarge,
                 ),
-                AppWidetBuilders.recommendedMeals(list: recipes),
+                DisplayRecipes(list: recipes),
               ],
             ),
           ),

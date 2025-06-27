@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:recipe_app/app/widgets/auth_button.dart';
+import 'package:recipe_app/app/widgets/social_auth_button.dart';
 import 'package:recipe_app/core/constants/app_constants.dart';
 import 'package:recipe_app/repository/functions/app_functions.dart';
 import 'package:recipe_app/view/homescreen.dart';
@@ -70,7 +72,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     context: context,
                   ),
                   SizedBox(height: 30.h),
-                  AppWidgets.buttonAuth(
+                  AuthButton(
                     label: "Sign Up",
                     onPressed:
                         () => AppFunctions.entryPoint(context, Homescreen()),
@@ -101,13 +103,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     ],
                   ),
                   SizedBox(height: 20.h),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: [
-                      AppWidgets.googleButton(),
-                      AppWidgets.facebookButton(),
-                    ],
-                  ),
+                  SocialAuthButton(),
                   SizedBox(height: 10.h),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,

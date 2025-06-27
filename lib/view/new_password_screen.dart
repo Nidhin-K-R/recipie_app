@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:recipe_app/app/widgets/auth_button.dart';
 import 'package:recipe_app/core/constants/app_constants.dart';
 import 'package:recipe_app/repository/functions/app_functions.dart';
 import 'package:recipe_app/view/homescreen.dart';
@@ -57,7 +58,7 @@ class _NewPasswordScreenState extends State<NewPasswordScreen> {
                     context: context,
                   ),
                   SizedBox(height: 40.h),
-                  AppWidgets.buttonAuth(
+                  AuthButton(
                     label: "Change Password",
                     onPressed:
                         () => AppFunctions.entryPoint3(context, Homescreen()),
