@@ -25,4 +25,11 @@ class AppConstants {
   static final sformKey = GlobalKey<FormState>();
   // .......new password
   static final nformKey = GlobalKey<FormState>();
+
+  // focusnodes
+  static final userName = FocusNode();
+  static final email = FocusNode();
+  static final password = FocusNode();
+  static final newPassword = FocusNode();
+  static final button = FocusNode();
 }
