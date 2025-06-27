@@ -4,15 +4,10 @@ import 'package:iconsax/iconsax.dart';
 import 'package:provider/provider.dart';
 import 'package:recipe_app/core/constants/app_constants.dart';
 import 'package:recipe_app/core/provider/button_provider.dart';
-import 'package:recipe_app/core/provider/category_provider.dart';
 
 class AppWidgets {
   //focus nodes
-  static final userName = FocusNode();
-  static final email = FocusNode();
-  static final password = FocusNode();
-  static final newPassword = FocusNode();
-  static final button = FocusNode();
+
   static var passwordValue;
 
   static Widget texts({required String label, required TextStyle? style}) {
@@ -26,9 +21,9 @@ class AppWidgets {
     required BuildContext context,
   }) {
     return TextFormField(
-      focusNode: email,
+      focusNode: AppConstants.email,
       onFieldSubmitted:
-          (value) => FocusScope.of(context).requestFocus(password),
+          (value) => FocusScope.of(context).requestFocus(AppConstants.password),
       controller: controller,
       validator: (value) {
         if (value == null || value.isEmpty) {
@@ -52,8 +47,9 @@ class AppWidgets {
     required BuildContext context,
   }) {
     return TextFormField(
-      focusNode: userName,
-      onFieldSubmitted: (value) => FocusScope.of(context).requestFocus(email),
+      focusNode: AppConstants.userName,
+      onFieldSubmitted:
+          (value) => FocusScope.of(context).requestFocus(AppConstants.email),
       controller: controller,
       validator: (value) {
         if (value == null || value.isEmpty) {
@@ -75,9 +71,10 @@ class AppWidgets {
     return Consumer<ButtonProvider>(
       builder:
           (context, value, child) => TextFormField(
-            focusNode: password,
+            focusNode: AppConstants.password,
             onFieldSubmitted:
-                (value) => FocusScope.of(context).requestFocus(button),
+                (value) =>
+                    FocusScope.of(context).requestFocus(AppConstants.button),
             controller: controller,
             validator: (value) {
               if (value == null || value.isEmpty) {
@@ -127,9 +124,9 @@ class AppWidgets {
 
         return null;
       },
-      focusNode: newPassword,
+      focusNode: AppConstants.newPassword,
       onFieldSubmitted:
-          (value) => FocusScope.of(context).requestFocus(password),
+          (value) => FocusScope.of(context).requestFocus(AppConstants.password),
       obscureText: true,
       keyboardType: TextInputType.visiblePassword,
       decoration: InputDecoration(icon: Icon(Iconsax.key), hintText: label),
@@ -157,50 +154,10 @@ class AppWidgets {
   }
 
   // button authentication
-  static Widget buttonAuth({
-    required String label,
-    required VoidCallback onPressed,
-  }) {
-    return ElevatedButton(
-      focusNode: button,
-      onFocusChange: (value) => print("button focus"),
-      onPressed: onPressed,
-      style: ElevatedButton.styleFrom(
-        backgroundColor: AppConstants.primaryColor,
-        foregroundColor: Colors.white,
-        minimumSize: Size(double.infinity, 45.h),
-        shape: ContinuousRectangleBorder(
-          borderRadius: BorderRadius.circular(20),
-        ),
-      ),
-      child: Text(
-        label,
-        style: TextStyle(fontSize: 20.r, fontWeight: FontWeight.bold),
-      ),
-    );
-  }
 
   // google button
-  static Widget googleButton() {
-    return InkWell(
-      child: Image.asset(
-        "assets/images/google.jpeg",
-        height: 80.r,
-        width: 80.r,
-      ),
-    );
-  }
 
   // facebook button
-  static Widget facebookButton() {
-    return InkWell(
-      child: Image.asset(
-        "assets/images/facebook.jpeg",
-        height: 55.r,
-        width: 55.r,
-      ),
-    );
-  }
 
   // searchbar
   static Widget searchBar() {
@@ -214,105 +171,8 @@ class AppWidgets {
   }
 
   // explore bar
-  static Widget exploreCard() {
-    return SizedBox(
-      height: 200.h,
-      child: Stack(
-        children: [
-          Container(
-            margin: EdgeInsets.only(top: 30.h),
-            height: 130.h,
-            width: double.infinity,
-            decoration: BoxDecoration(
-              gradient: LinearGradient(
-                colors: [AppConstants.accentColor, AppConstants.primaryColor],
-              ),
 
-              borderRadius: BorderRadius.circular(12),
-            ),
-            child: Padding(
-              padding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 10.h),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    "Cook the best\nrecipes at home",
-                    style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                      fontSize: 25.r,
-                      color: Colors.white,
-                      height: 0,
-                    ),
-                  ),
-                  SizedBox(height: 15.h),
-                  ElevatedButton(
-                    onPressed: () {},
-                    child: Text("Explore"),
-                    style: ElevatedButton.styleFrom(
-                      fixedSize: Size(150.w, 25.h),
-                      foregroundColor: AppConstants.primaryColor,
-                    ),
-                  ),
-                ],
-              ),
-            ),
-          ),
-          Align(
-            alignment: Alignment(1.2.w, 0),
-            child: Image.asset(
-              "assets/images/chef.png",
-
-              height: 180.r,
-              filterQuality: FilterQuality.high,
-              fit: BoxFit.fill,
-            ),
-          ),
-        ],
-      ),
-    );
-  }
   // category
 
-  static List<List<String>> categoryItems = [
-    [
-      "assets/images/breakfast.png",
-      "assets/images/lunch.png",
-      "assets/images/evening.png",
-      "assets/images/dinner.png",
-      "assets/images/desert.png",
-      "assets/images/juice.png",
-    ],
-    ["Breakfast", "Lunch", "Snacks", "Dinner", "Desert", "Juice"],
-  ];
-
   //allcategory button
-  static Widget allCategoryButton() {
-    return Consumer<CategoryProvider>(
-      builder:
-          (context, value, child) => TextButton(
-            style: ButtonStyle(
-              backgroundColor: WidgetStatePropertyAll(
-                value.selectedIndex == -1
-                    ? AppConstants.accentColor
-                    : Colors.white,
-              ),
-            ),
-            onPressed: () {
-              value.changeCategory(-1);
-            },
-            child: Text(
-              "All",
-              style: TextStyle(
-                fontSize: 15.r,
-                color: value.selectedIndex == -1 ? Colors.white : Colors.teal,
-              ),
-            ),
-          ),
-    );
-  }
-
-  //popular recipie
-  static Widget popularCard() {
-    return InkWell(child: Card());
-  }
 }
