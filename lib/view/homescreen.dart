@@ -4,6 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:recipe_app/app/widgets/banner.dart';
 import 'package:recipe_app/app/widgets/categories.dart';
 import 'package:recipe_app/app/widgets/display_recipes.dart';
+
 import 'package:recipe_app/core/constants/app_constants.dart';
 import 'package:recipe_app/app/widgets/app_widgets.dart';
 
@@ -19,9 +20,17 @@ class Homescreen extends StatefulWidget {
 
 class _HomescreenState extends State<Homescreen> {
   static List<DataModel> recipes = [];
+  // Future<void> fetch() async {
+  //   final recipe = await ApiServices.getRecipes();
+
+  //   print(recipe);
+  //   setState(() {
+  //     recipes = recipe;
+  //   });
+  // }
   Future<void> fetch() async {
     final recipe = await ApiServices.getRecipes();
-    print(recipe);
+
     setState(() {
       recipes = recipe;
     });
@@ -56,11 +65,22 @@ class _HomescreenState extends State<Homescreen> {
                 SizedBox(height: 10.h),
 
                 Categories(),
-                AppWidgets.texts(
-                  label: "Recommended for you ",
-                  style: TextTheme.of(context).labelLarge,
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    AppWidgets.texts(
+                      label: "Recommended for you ",
+                      style: TextTheme.of(context).labelLarge,
+                    ),
+                    AppWidgets.textButton(
+                      label: "See All",
+                      size: 16,
+                      onPressed: () {},
+                    ),
+                  ],
                 ),
-                DisplayRecipes(list: recipes),
+                SizedBox(height: 15.h),
+                DisplayRecipes(recipeList: recipes),
               ],
             ),
           ),

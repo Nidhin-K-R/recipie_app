@@ -5,7 +5,6 @@ import 'package:recipe_app/app/widgets/app_widgets.dart';
 import 'package:recipe_app/core/constants/app_constants.dart';
 import 'package:recipe_app/core/provider/category_provider.dart';
 
-// ignore: must_be_immutable
 class Categories extends StatelessWidget {
   Categories({super.key});
   List<List<String>> categoryItems = [

@@ -5,11 +5,7 @@ import 'package:recipe_app/core/constants/app_constants.dart';
 class AuthButton extends StatelessWidget {
   final String label;
   final VoidCallback onPressed;
-  const AuthButton({
-    super.key,
-    required String this.label,
-    required VoidCallback this.onPressed,
-  });
+  const AuthButton({super.key, required this.label, required this.onPressed});
 
   @override
   Widget build(BuildContext context) {

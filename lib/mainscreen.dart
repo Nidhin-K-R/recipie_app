@@ -4,6 +4,7 @@ import 'package:iconsax/iconsax.dart';
 import 'package:recipe_app/view/homescreen.dart';
 import 'package:recipe_app/view/login_screen.dart';
 import 'package:recipe_app/view/new_password_screen.dart';
+import 'package:recipe_app/view/recipe_detail_screen.dart';
 import 'package:recipe_app/view/sign_up_screen.dart';
 
 class Mainscreen extends StatefulWidget {
@@ -15,10 +16,22 @@ class Mainscreen extends StatefulWidget {
 
 class _MainscreenState extends State<Mainscreen> {
   int currentIndex = 0;
-  late final List<Widget> page;
+  late final List<Widget> page = [
+    LoginScreen(),
+    SignUpScreen(),
+    NewPasswordScreen(),
+    Homescreen(),
+    RecipeDetailScreen(),
+  ];
   @override
   void initState() {
-    page = [LoginScreen(), SignUpScreen(), NewPasswordScreen(), Homescreen()];
+    // page = [
+    //   LoginScreen(),
+    //   SignUpScreen(),
+    //   NewPasswordScreen(),
+    //   Homescreen(),
+    //   RecipeDetailScreen(),
+    // ];
     super.initState();
   }
 
@@ -49,6 +62,10 @@ class _MainscreenState extends State<Mainscreen> {
             label: "Password",
           ),
           BottomNavigationBarItem(icon: Icon(Iconsax.home), label: "Home"),
+          BottomNavigationBarItem(
+            icon: Icon(Iconsax.receipt),
+            label: "Detail_screen",
+          ),
         ],
       ),
       body: page[currentIndex],
